@@ -1,8 +1,8 @@
 package com.aniwange.cashmoneymanagement.domain.model.enumeration
 
 enum class  TransactionType(transactionName:String){
-    TRANSFER("CASH TRANSFER"),
-    CASH_WITHDRAWAL("CASH WITHDRAWAL")
+    TRANSFER("TRANSFER"),
+    WITHDRAWAL("WITHDRAWAL")
 
 }
 enum class  ChargeType(chargeName: String){

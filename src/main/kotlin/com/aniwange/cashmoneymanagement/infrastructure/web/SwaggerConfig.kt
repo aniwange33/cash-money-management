@@ -1,4 +1,4 @@
-package com.aniwange.cashmoneymanagement.infrastructure.web.controller
+package com.aniwange.cashmoneymanagement.infrastructure.web
 
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.info.BuildProperties
@@ -68,8 +68,9 @@ class SwaggerConfig {
     }
     private fun apiInfo(version: String): ApiInfo {
         return ApiInfoBuilder()
-                .title("Cash Money management application")
-                .description("API service for Cash Money Management application")
+                .title("Cash Money Management Application")
+                .description("API Service for Cash Money Management Application")
+                .contact("terteseamos@gmail.com")
                 .version(version)
                 .build()
     }

@@ -9,3 +9,12 @@ class SearchACustomerByNameOrPhoneImpl(private val customerGateway: CustomerGate
     override fun searchCustomerByNameOrPhone(searchTerm: String) = customerGateway.searchACustomerByNameOrPhone(searchTerm)
 
 }
+
+fun String.isName(term: String): Boolean {
+    return (term != ""
+            && term != null
+            && term.matches("^[a-zA-Z]*$".toRegex()))
+
+
+
+}
