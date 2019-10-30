@@ -15,28 +15,10 @@ jobs:
       -
         restore_cache:
           key: "cash-money-management-{{ checksum \"pom.xml\" }}"
-      -
-        run:
-          command: |
-            curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64 > ./cc-test-reporter
-            chmod +x ./cc-test-reporter
-          name: "Setup Code Climate test-reporter"
-      -
-        run:
-          command: |
-            mkdir /tmp/test-results
-            ./cc-test-reporter before-build
-            mvn package
-          name: "Run tests"
-      -
-        run:
-          command: "./cc-test-reporter after-build -t lcov --exit-code $?\n"
-          name: "Codeclimate test coverage"
-      -
         run: "mvn dependency:go-offline"
       -
         save_cache:
-          key: "circleci-demo-java-spring-{{ checksum \"pom.xml\" }}"
+          key: "cash-money-management-{{ checksum \"pom.xml\" }}"
           paths:
             - ~/.m2
       -
