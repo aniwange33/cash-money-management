@@ -1,51 +1,34 @@
----
+version: 2
 jobs:
   build:
+
+    working_directory: ~/cash-money-management
+
     docker:
-      -
-        image: "circleci/openjdk:8-jdk-stretch"
-      -
+      - image: circleci/openjdk:8-jdk-stretch
+      - image: circleci/postgres:9.6.3-alpine
         environment:
-          CC_TEST_REPORTER_ID: 9de9a4fd877e0a19094b122f9424acf6a590f0a8c43f18599509d0350ffe65a5
-          POSTGRES_DB: circle_test
           POSTGRES_USER: root
-        image: "circleci/postgres:9.6.3-alpine"
+          POSTGRES_DB: circle_test
+
     steps:
+
       - checkout
-      -
-        restore_cache:
-          key: "cash-money-management-{{ checksum \"pom.xml\" }}"
-      -
-        run:
-          command: |
-            curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64 > ./cc-test-reporter
-            chmod +x ./cc-test-reporter
-          name: "Setup Code Climate test-reporter"
-      -
-        run:
-          command: |
-            mkdir /tmp/test-results
-            ./cc-test-reporter before-build
-            mvn package
-          name: "Run tests"
-      -
-        run:
-          command: "./cc-test-reporter after-build -t lcov --exit-code $?\n"
-          name: "Codeclimate test coverage"
-      -
-        run: "mvn dependency:go-offline"
-      -
-        save_cache:
-          key: "circleci-demo-java-spring-{{ checksum \"pom.xml\" }}"
+
+      - restore_cache:
+          key: cash-money-management-{{ checksum "pom.xml" }}
+
+      - run: mvn dependency:go-offline
+
+      - save_cache:
           paths:
             - ~/.m2
-      -
-        run: "mvn package"
-      -
-        store_test_results:
+          key: circleci-demo-java-spring-{{ checksum "pom.xml" }}
+
+      - run: mvn package
+
+      - store_test_results:
           path: target/surefire-reports
-      -
-        store_artifacts:
+
+      - store_artifacts:
           path: target/cash-money-management-0.0.1-SNAPSHOT.jar
-    working_directory: ~/cash-money-management
-version: 2
