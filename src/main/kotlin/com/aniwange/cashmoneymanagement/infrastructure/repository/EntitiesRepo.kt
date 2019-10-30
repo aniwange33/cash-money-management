@@ -2,16 +2,17 @@ package com.aniwange.cashmoneymanagement.infrastructure.repository
 
 import com.aniwange.cashmoneymanagement.infrastructure.entities.Customer
 import com.aniwange.cashmoneymanagement.infrastructure.entities.Transaction
+import com.aniwange.cashmoneymanagement.infrastructure.entities.User
 import org.springframework.data.domain.Pageable
 import org.springframework.data.jpa.repository.JpaRepository
 import org.springframework.data.jpa.repository.Query
 import org.springframework.data.repository.query.Param
 import org.springframework.stereotype.Repository
 
+
 @Repository
-interface  CustomerRepository: JpaRepository<Customer, Long> {
-    @Query("select c from Customer c where  lower(c.surname) like :term% or c.phoneNumber like :term%")
-    fun searchCustomerByNameOrPhoneNumber(@Param("term") term: String, pageable: Pageable): List<Customer>
+interface  UserRepository: JpaRepository<User, Long>{
+    fun getUserByEmail(email: String): User
 }
 
 @Repository
@@ -22,3 +23,12 @@ interface  TransactionRepository: JpaRepository<Transaction, Long> {
     @Query("select  sum (t .charge) from  Transaction t")
     fun getTotalCharge(): Double
 }
+
+@Repository
+interface  CustomerRepository: JpaRepository<Customer, Long> {
+    @Query("select c from Customer c where  lower(c.surname) like :term% or c.phoneNumber like :term%")
+    fun searchCustomerByNameOrPhoneNumber(@Param("term") term: String, pageable: Pageable): List<Customer>
+}
+
+
+

@@ -10,5 +10,5 @@ class Customer(val surname: String): BaseEntity<Long>() {
     var firstName: String =""
     var lastName: String = ""
     var email : String = ""
-    var phoneNumber: String = ""
+    var phoneNumber: String =""
 }
