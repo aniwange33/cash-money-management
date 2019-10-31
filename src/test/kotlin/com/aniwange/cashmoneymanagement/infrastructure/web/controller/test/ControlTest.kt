@@ -16,4 +16,9 @@ class ControlTest {
     fun testHel(){
         TestCase.assertEquals("hello", "hello")
     }
+
+    @Test
+    fun testHelo(){
+        TestCase.assertEquals("hello1", "hello1")
+    }
 }
