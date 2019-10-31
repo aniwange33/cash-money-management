@@ -21,4 +21,9 @@ class ControlTest {
     fun testHelo(){
         TestCase.assertEquals("hello1", "hello1")
     }
+    @Test
+    fun testHeloo(){
+        TestCase.assertEquals("hello1", "hello1")
+    }
+
 }
