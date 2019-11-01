@@ -44,6 +44,13 @@
 			<version>2.23.0</version>
 			<scope>test</scope>
 		</dependency>
+		<!-- https://mvnrepository.com/artifact/org.jacoco/jacoco-maven-plugin -->
+<!--		<dependency>-->
+<!--			<groupId>org.jacoco</groupId>-->
+<!--			<artifactId>jacoco-maven-plugin</artifactId>-->
+<!--			<version>0.8.2</version>-->
+<!--		</dependency>-->
+
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-data-jpa</artifactId>
@@ -139,7 +146,85 @@
 					</dependency>
 				</dependencies>
 			</plugin>
+			<plugin>
+				<groupId>org.jacoco</groupId>
+				<artifactId>jacoco-maven-plugin</artifactId>
+				<version>0.8.3</version>
+				<executions>
+					<execution>
+						<id>prepare-agent</id>
+						<goals>
+							<goal>prepare-agent</goal>
+						</goals>
+					</execution>
+					<execution>
+						<id>report</id>
+						<phase>prepare-package</phase>
+						<goals>
+							<goal>report</goal>
+						</goals>
+					</execution>
+					<execution>
+						<id>post-unit-test</id>
+						<phase>test</phase>
+						<goals>
+							<goal>report</goal>
+						</goals>
+						<configuration>
+							<!-- Sets the path to the file which contains the execution data. -->
+
+							<dataFile>target/jacoco.exec</dataFile>
+							<!-- Sets the output directory for the code coverage report. -->
+							<outputDirectory>target/my-reports</outputDirectory>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
 		</plugins>
 	</build>
-
 </project>
+
+
+<!--<build>-->
+<!--<plugins>-->
+<!--	<plugin>-->
+<!--		<groupId>org.jacoco</groupId>-->
+<!--		<artifactId>jacoco-maven-plugin</artifactId>-->
+<!--		<version>0.8.3</version>-->
+<!--		<executions>-->
+<!--			<execution>-->
+<!--				<id>prepare-agent</id>-->
+<!--				<goals>-->
+<!--					<goal>prepare-agent</goal>-->
+<!--				</goals>-->
+<!--			</execution>-->
+<!--			<execution>-->
+<!--				<id>report</id>-->
+<!--				<phase>prepare-package</phase>-->
+<!--				<goals>-->
+<!--					<goal>report</goal>-->
+<!--				</goals>-->
+<!--			</execution>-->
+<!--			<execution>-->
+<!--				<id>post-unit-test</id>-->
+<!--				<phase>test</phase>-->
+<!--				<goals>-->
+<!--					<goal>report</goal>-->
+<!--				</goals>-->
+<!--				<configuration>-->
+<!--					&lt;!&ndash; Sets the path to the file which contains the execution data. &ndash;&gt;-->
+
+<!--					<dataFile>target/jacoco.exec</dataFile>-->
+<!--					&lt;!&ndash; Sets the output directory for the code coverage report. &ndash;&gt;-->
+<!--					<outputDirectory>target/my-reports</outputDirectory>-->
+<!--				</configuration>-->
+<!--			</execution>-->
+<!--		</executions>-->
+<!--		<configuration>-->
+<!--			<systemPropertyVariables>-->
+<!--				<jacoco-agent.destfile>target/jacoco.exec</jacoco-agent.destfile>-->
+<!--			</systemPropertyVariables>-->
+<!--		</configuration>-->
+<!--	</plugin>-->
+<!--</plugins>-->
+<!--</build>-->
