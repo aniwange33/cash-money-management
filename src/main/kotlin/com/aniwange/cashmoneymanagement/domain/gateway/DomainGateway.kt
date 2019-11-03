@@ -12,7 +12,7 @@ interface  CustomerGateway{
     fun registerACustomer(customerRegistrationCommand: CustomerRegistrationCommand): CustomerDomain
     fun fetchAllCustomers(): List<CustomerDomain>
     fun searchACustomerByNameOrPhone(searchTerm: String): List<CustomerDomain>
-    fun countCustomer(): Int
+    fun countCustomer(): Long
 
 }
 

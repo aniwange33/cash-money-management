@@ -11,10 +11,6 @@ class SearchACustomerByNameOrPhoneImpl(private val customerGateway: CustomerGate
 }
 
 fun String.isName(term: String): Boolean {
-    return (term != ""
-            && term != null
-            && term.matches("^[a-zA-Z]*$".toRegex()))
-
-
+    return (term != "" && term.matches("^[a-zA-Z]*$".toRegex()))
 
 }

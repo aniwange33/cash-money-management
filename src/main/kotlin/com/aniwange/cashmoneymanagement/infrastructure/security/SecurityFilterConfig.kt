@@ -56,7 +56,6 @@ class ClientCredentialAuthenticationFilter : Filter {
             response.characterEncoding = "UTF-8"
             response.status = HttpStatus.UNAUTHORIZED.value()
            throw  IllegalAccessException(apiResponse)
-            return
         }
         filterChain.doFilter(request, response)
     }

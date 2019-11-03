@@ -12,6 +12,7 @@ import springfox.documentation.builders.PathSelectors
 import springfox.documentation.builders.RequestHandlerSelectors
 import springfox.documentation.builders.ResponseMessageBuilder
 import springfox.documentation.service.ApiInfo
+import springfox.documentation.service.Contact
 import springfox.documentation.service.ResponseMessage
 import springfox.documentation.spi.DocumentationType
 import springfox.documentation.spring.web.plugins.Docket
@@ -67,10 +68,11 @@ class SwaggerConfig {
                 TagsSorter.ALPHA, UiConfiguration.Constants.DEFAULT_SUBMIT_METHODS, null)
     }
     private fun apiInfo(version: String): ApiInfo {
+        val  contact = Contact("Amos Tertese", "", "terteseamos@gmail.com")
         return ApiInfoBuilder()
                 .title("Cash Money Management Application")
                 .description("API Service for Cash Money Management Application")
-                .contact("terteseamos@gmail.com")
+                .contact(contact)
                 .version(version)
                 .build()
     }

@@ -26,6 +26,7 @@ import org.springframework.security.web.util.matcher.AntPathRequestMatcher
 import org.springframework.security.web.util.matcher.NegatedRequestMatcher
 import org.springframework.security.web.util.matcher.OrRequestMatcher
 import org.springframework.security.web.util.matcher.RequestMatcher
+import java.nio.charset.Charset
 import javax.servlet.http.HttpServletRequest
 import javax.servlet.http.HttpServletResponse
 
@@ -98,7 +99,9 @@ class CustomAuthenticationFailureHandler: SimpleUrlAuthenticationFailureHandler(
         response.addHeader("Content-Type", "application/json")
         response.characterEncoding = "UTF-8"
         response.status = HttpStatus.UNAUTHORIZED.value()
-        response.outputStream?.write(apiResponse as ByteArray)
+        if (apiResponse != null) {
+            response.outputStream?.write(apiResponse.toByteArray(Charset.defaultCharset()))
+        }
     }
 }
 class NoRedirectStrategy : RedirectStrategy {

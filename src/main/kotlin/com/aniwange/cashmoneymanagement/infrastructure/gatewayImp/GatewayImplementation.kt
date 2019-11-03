@@ -72,8 +72,8 @@ class CustomerDomainGatewayImpl(val customerRepository: CustomerRepository): Cus
         return customers.map { convertCustomerToCustomerDomain(it) }
      }
 
-    override fun countCustomer(): Int {
-       return  customerRepository.count() as Int
+    override fun countCustomer(): Long {
+       return  customerRepository.count()
     }
 
     override fun searchACustomerByNameOrPhone(searchTerm: String): List<CustomerDomain> {
@@ -125,7 +125,7 @@ class UserDomainGatewayImpl(private val userRepository: UserRepository): UserGat
 
     override fun registerAUser(userRegistrationCommand: UserRegistrationCommand): UserDomain {
        val userFromDb = userRepository.getUserByEmail(userRegistrationCommand.email)
-        if(userFromDb != null){
+        if(userFromDb.email == userRegistrationCommand.email){
             throw IllegalArgumentException("email already taken")
         }
        val  user = User(userRegistrationCommand.fullName, userRegistrationCommand.phone, userRegistrationCommand.email)

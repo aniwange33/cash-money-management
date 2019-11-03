@@ -47,7 +47,7 @@ class TokenAuthenticationProvider : AbstractUserDetailsAuthenticationProvider() 
             return null
         }
         val id: String = attributes["id"] ?: return null
-        val userDomain = userGateway.findById(id as Long)
+        val userDomain = userGateway.findById(id.toLong())
         return fromAppUserToAuthenticatedUser(userDomain)
     }
 }
