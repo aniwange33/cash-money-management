@@ -23,10 +23,10 @@ jobs:
           paths:
             - ~/.m2
       -
+        run: "mvn clean test jacoco:report coveralls:report"
+      -
         run: "mvn package"
       -
-        after_success:
-          - "mvn clean test jacoco:report coveralls:report"
         store_test_results:
           path: target/surefire-reports
       -
@@ -34,6 +34,7 @@ jobs:
           path: target/cash-money-management-0.0.1-SNAPSHOT.jar
     working_directory: ~/cash-money-management
 version: 2
+
 
 #---
 #jobs:
