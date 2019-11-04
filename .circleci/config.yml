@@ -73,8 +73,7 @@ jobs:
         run:
           command: "./cc-test-reporter after-build -t lcov --exit-code $?\n"
           name: "Codeclimate test coverage"
-      -
-#        run: "mvn package"
+      - ~
       -
         store_test_results:
           path: target/surefire-reports
