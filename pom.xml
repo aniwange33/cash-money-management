@@ -76,11 +76,11 @@
 			<groupId>org.jetbrains.kotlin</groupId>
 			<artifactId>kotlin-reflect</artifactId>
 		</dependency>
-		<dependency>
-			<groupId>org.eluder.coveralls</groupId>
-			<artifactId>coveralls-maven-plugin</artifactId>
-			<version>4.3.0</version>
-		</dependency>
+<!--		<dependency>-->
+<!--			<groupId>org.eluder.coveralls</groupId>-->
+<!--			<artifactId>coveralls-maven-plugin</artifactId>-->
+<!--			<version>4.3.0</version>-->
+<!--		</dependency>-->
 
 		<dependency>
 			<groupId>org.jetbrains.kotlin</groupId>
@@ -157,6 +157,14 @@
 						</goals>
 					</execution>
 				</executions>
+			</plugin>
+			<plugin>
+				<groupId>org.eluder.coveralls</groupId>
+				<artifactId>coveralls-maven-plugin</artifactId>
+				<version>4.3.0</version>
+				<configuration>
+					<repoToken>YSIZ5xLRap5j0BL635pNRu7bHqQ9hzt6y</repoToken>
+				</configuration>
 			</plugin>
 <!--			<plugin>-->
 <!--				<groupId>org.jacoco</groupId>-->
