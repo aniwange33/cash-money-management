@@ -11,25 +11,25 @@ import org.springframework.web.bind.annotation.RequestMethod
 import org.springframework.web.bind.annotation.RestController
 
 @RestController
-@RequestMapping("api/v1/")
+@RequestMapping("/v1/api/app/", headers = ["client-key", "Authorization"])
 class TransactionController(val performCustomerTransaction: PerformCustomerTransaction, val reportTransactionAmountAndCharges: ReportTransactionAmountAndCharges) {
 
-    @RequestMapping(value = "customer/transaction", method = [RequestMethod.POST])
+    @RequestMapping(value = ["customer/transaction"], method = [RequestMethod.POST])
     fun registerCustomerTransaction(@RequestBody transactionRequestCommand: TransactionRequestCommand): ResponseEntity<TransactionDomain> {
         return ResponseEntity.ok(performCustomerTransaction.processCustomerTransaction(transactionRequestCommand))
     }
 
-    @RequestMapping(value = "customer/transactions", method = [RequestMethod.GET])
+    @RequestMapping(value = ["customer/transactions"], method = [RequestMethod.GET])
     fun fetchAllRegisteredTransaction(): ResponseEntity<List<TransactionDomain>> {
         return ResponseEntity.ok(performCustomerTransaction.fetchAllTransaction())
     }
 
-    @RequestMapping(value = "customer/transaction/amount", method = [RequestMethod.GET])
+    @RequestMapping(value = ["customer/transaction/amount"], method = [RequestMethod.GET])
     fun getTotalTransactionAmount(): ResponseEntity<Double> {
         return ResponseEntity.ok(reportTransactionAmountAndCharges.getTotalTransactionAmount())
     }
 
-    @RequestMapping(value = "customer/transaction/charges", method = [RequestMethod.GET])
+    @RequestMapping(value = ["customer/transaction/charges"], method = [RequestMethod.GET])
     fun getTotalTransactionCharges(): ResponseEntity<Double> {
         return ResponseEntity.ok(reportTransactionAmountAndCharges.getTotalTransactionCharges())
     }

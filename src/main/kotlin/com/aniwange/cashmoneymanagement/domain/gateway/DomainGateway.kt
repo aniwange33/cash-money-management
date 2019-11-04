@@ -12,7 +12,7 @@ interface  CustomerGateway{
     fun registerACustomer(customerRegistrationCommand: CustomerRegistrationCommand): CustomerDomain
     fun fetchAllCustomers(): List<CustomerDomain>
     fun searchACustomerByNameOrPhone(searchTerm: String): List<CustomerDomain>
-    fun countCustomer(): Int
+    fun countCustomer(): Long
 
 }
 
@@ -27,5 +27,6 @@ interface  TransactionGateway{
 interface  UserGateway{
     fun registerAUser(userRegistrationCommand: UserRegistrationCommand): UserDomain
     fun findById(id: Long): UserDomain
+    fun findByEmail(email: String): UserDomain
 
 }
