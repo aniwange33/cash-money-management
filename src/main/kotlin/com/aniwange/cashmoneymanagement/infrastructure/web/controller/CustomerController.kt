@@ -10,7 +10,7 @@ import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.*
 
 @RestController
-@RequestMapping("api/v1/")
+@RequestMapping(value = "/v1/api/app/", headers = ["client-key", "Authorization"])
 class CustomerController(val registerACustomer: RegisterACustomer, val fetchAllCustomers: FetchAllCustomers, val searchACustomerByNameOrPhone: SearchACustomerByNameOrPhone) {
 
     @RequestMapping(value = ["customer"], method = [RequestMethod.POST])

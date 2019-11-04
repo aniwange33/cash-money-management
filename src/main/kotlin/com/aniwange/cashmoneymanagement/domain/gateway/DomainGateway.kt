@@ -27,5 +27,6 @@ interface  TransactionGateway{
 interface  UserGateway{
     fun registerAUser(userRegistrationCommand: UserRegistrationCommand): UserDomain
     fun findById(id: Long): UserDomain
+    fun findByEmail(email: String): UserDomain
 
 }

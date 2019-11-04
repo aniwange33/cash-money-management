@@ -44,9 +44,10 @@ fun convertTransactionToTransactionDomain(transaction: Transaction): Transaction
 }
 
 fun  convertUserToUserDomain(user: User): UserDomain{
-    val userDomain = UserDomain(user.name, user.phone, user.email)
+    val userDomain = UserDomain(user.name, user.password, user.email)
     userDomain.id = user.id!!
     userDomain.role = user.role
+    userDomain.phone = user.phone
     return  userDomain
 }
 @Bean
@@ -114,6 +115,11 @@ class  TransactionDomainGatewayImpl(val transactionRepository: TransactionReposi
 
 @Service
 class UserDomainGatewayImpl(private val userRepository: UserRepository): UserGateway {
+    override fun findByEmail(email: String): UserDomain {
+        val appUser = userRepository.findUserByEmail(email).orElseThrow { throw NotFoundException("invalid email") }
+        return convertUserToUserDomain(appUser)
+
+    }
 
     override fun findById(id: Long): UserDomain {
         val  appUserOptional = userRepository.findById(id)
@@ -124,8 +130,8 @@ class UserDomainGatewayImpl(private val userRepository: UserRepository): UserGat
     }
 
     override fun registerAUser(userRegistrationCommand: UserRegistrationCommand): UserDomain {
-       val userFromDb = userRepository.getUserByEmail(userRegistrationCommand.email)
-        if(userFromDb.email == userRegistrationCommand.email){
+       val userFromDb = userRepository.findUserByEmail(userRegistrationCommand.email)
+        if(userFromDb.isPresent){
             throw IllegalArgumentException("email already taken")
         }
        val  user = User(userRegistrationCommand.fullName, userRegistrationCommand.phone, userRegistrationCommand.email)
