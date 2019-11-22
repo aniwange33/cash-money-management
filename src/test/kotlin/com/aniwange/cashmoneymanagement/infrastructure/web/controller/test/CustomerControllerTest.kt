@@ -52,7 +52,7 @@ class CustomerControllerTest(@Mock  val registerACustomer: RegisterACustomer){
         val gson = Gson()
         val requestString = gson.toJson(request)
        `when`(registerACustomer.registerACustomer(request)).thenReturn(convertCustomerToCustomerDomain(customer))
-        val mvcResult= mockMvc!!.perform(MockMvcRequestBuilders.post("/v1/api/app/customer")
+        mockMvc!!.perform(MockMvcRequestBuilders.post("/v1/api/app/customer")
                 .header("client-key","test")
                 .header("Authorization", "dhjdjdjdiwnsnsj")
                 .accept(MediaType.APPLICATION_JSON)
@@ -71,7 +71,7 @@ class CustomerControllerTest(@Mock  val registerACustomer: RegisterACustomer){
         val customerD1 = CustomerDomain(1, "08101067538")
             customerD.name = "Jerry tyowar"
         `when`(searchACustomerByNameOrPhone.searchCustomerByNameOrPhone("jerry")).thenReturn(listOf(customerD,customerD1))
-         val mvcResult= mockMvc!!.perform(MockMvcRequestBuilders.get("/v1/api/app/customer/search/jerry")
+          mockMvc!!.perform(MockMvcRequestBuilders.get("/v1/api/app/customer/search/jerry")
                 .header("client-key","test")
                 .header("Authorization", "dhjdjdjdiwnsnsj")
                 .accept(MediaType.APPLICATION_JSON)
@@ -79,7 +79,6 @@ class CustomerControllerTest(@Mock  val registerACustomer: RegisterACustomer){
                 .content("jerry"))
                 .andExpect(MockMvcResultMatchers.status().isOk)
                 .andReturn()
-        println(mvcResult.response.contentAsString)
         verify(searchACustomerByNameOrPhone, Times(1)).searchCustomerByNameOrPhone("jerry")
     }
 
@@ -90,13 +89,12 @@ class CustomerControllerTest(@Mock  val registerACustomer: RegisterACustomer){
         val customerD1 = CustomerDomain(1, "08101067538")
         customerD.name = "Jerry tyowar"
         `when`(fetchAllCustomers.fetchAllCustomers()).thenReturn(listOf(customerD,customerD1))
-        val mvcResult= mockMvc!!.perform(MockMvcRequestBuilders.get("/v1/api/app/customer/list")
+         mockMvc!!.perform(MockMvcRequestBuilders.get("/v1/api/app/customer/list")
                 .header("client-key","test")
                 .header("Authorization", "dhjdjdjdiwnsnsj")
                 .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(MockMvcResultMatchers.status().isOk)
                 .andReturn()
-        println(mvcResult.response.contentAsString)
         verify(fetchAllCustomers, Times(1)).fetchAllCustomers()
     }
 

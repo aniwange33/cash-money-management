@@ -1,0 +1,79 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/html">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <title>Zena email | Template</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <link href="https://fonts.googleapis.com/css?family=Lato&display=swap" rel="stylesheet">
+</head>
+
+<body style="margin: 0; padding: 0; font-family: 'Lato', sans-serif;">
+<table cellpadding="0" cellspacing="0" width="100%">
+    <tr>
+        <td>
+            <table align="center" cellpadding="0" cellspacing="0" width="600" style="border-collapse: collapse;">
+                <tr>
+                    <td>
+                        <img src="https://res.cloudinary.com/vela/image/upload/v1570795811/zena/top-line.png" style="display: block;">
+                    </td>
+
+                </tr>
+                <tr>
+                    <td>
+                        <table align="center" cellpadding="0" cellspacing="0" width="70%">
+                            <tr>
+                                <td style="display: flex;">
+                                    <img src="https://res.cloudinary.com/vela/image/upload/v1570795811/zena/zena-img.png" alt="logo-image" style="display: block; margin-top: 30px;">
+                                    <h2 style="font-size: 22px; line-height:15px; margin-left: 12px;margin-top: 45px;">ZENA</h2>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <hr style="margin-top: 35px;">
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <h1 style="line-height:15px; margin-top: 45px;">Meeting Notification</h1>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <h4 style="margin-top: 45px; margin-bottom: 30px;">Hi,  <strong lass="acc-created" th:text="${visitorName}">amos</strong></h4>
+                                    <p style="color: #666666"> <span style="font-weight: bold;" , th:text="${organization}">Vela Business solutions</span>reminds you of your meeting </p>
+                                    <p style="margin-top: -5px; color: #666666">with<span span style="font-weight: bold;" , th:text="${hostName}">Jerry Okafor</span>  at<span style="font-weight: bold;" , th:text="${address}"> 23 Newington Way</span></p>
+                                    <p style="margin-top: -5px; color: #666666"><span style="font-weight: bold;"></span> on <span style="font-weight: bold;" , th:text="${dateAndTime}">Monday, 13th of August at 10:00am.</span></p>
+                                    <p style="margin-top: -5px; color: #666666">Your visit number is  <span style="font-weight: bold;" , th:text="${visitNumber}">102</span></p>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <p style="color: #666666;">Need help, ask <a href="#" style="text-decoration: none; color: #5041FA;">team@zena.com</a> or visit our <a href="#" style="text-decoration: none; color: #5041FA;">help center</a></p>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <hr style="margin-top: 30px; margin-bottom: -1px;">
+                                </td>
+                            </tr>
+                        </table>
+                    </td>
+                </tr>
+                <tr>
+                    <td bgcolor="#ecf0f1">
+                        <div style="text-align: center; margin-bottom: 10px;">
+                            <p style="color: #666666">copy (c) Zena 2019</p>
+                            <p style="margin-top: -5px; color: #666666">19b, Idejo street, Adeola Odeku, Lagos</p>
+                            <a href="#"><img src="https://res.cloudinary.com/vela/image/upload/v1570795811/zena/vector2.png"></a>
+                            <a href="#"><img src="https://res.cloudinary.com/vela/image/upload/v1570795811/zena/vector1.png" style="margin-left: 25px;"></a>
+                            <a href="#"><img src="https://res.cloudinary.com/vela/image/upload/v1570795811/zena/vector.png" style="margin-left: 25px;"></a>
+                        </div>
+                    </td>
+                </tr>
+            </table>
+        </td>
+    </tr>
+</table>
+</body>
+</html>
